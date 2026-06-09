@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/theme/app_colors.dart';
-import 'splash_controller.dart';
 
-class SplashView extends GetView<SplashController> {
+class SplashView extends GetView<dynamic> {
   const SplashView({super.key});
 
   @override
@@ -13,46 +13,175 @@ class SplashView extends GetView<SplashController> {
     return Scaffold(
       backgroundColor: AppColors.primary,
 
-      body: Center(
-        child: TweenAnimationBuilder(
-          duration: const Duration(milliseconds: 1500),
+      body: const Stack(
+        children: [
+          _SoftFloatingShapes(),
+          Center(child: _CleanSplash()),
+        ],
+      ),
+    );
+  }
+}
 
-          tween: Tween(begin: 0.0, end: 1.0),
+class _SoftFloatingShapes extends StatefulWidget {
+  const _SoftFloatingShapes();
 
-          builder: (context, value, child) {
-            return Transform.scale(
-              scale: value,
-              child: Opacity(opacity: value, child: child),
-            );
-          },
+  @override
+  State<_SoftFloatingShapes> createState() => _SoftFloatingShapesState();
+}
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset('assets/svg/genge_logo.svg', height: 120),
+class _SoftFloatingShapesState extends State<_SoftFloatingShapes>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _c;
 
-              const SizedBox(height: 20),
+  @override
+  void initState() {
+    super.initState();
+    _c = AnimationController(vsync: this, duration: const Duration(seconds: 8))
+      ..repeat(reverse: true);
+  }
 
-              const Text(
-                'GENGE',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 4,
-                ),
-              ),
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
 
-              const SizedBox(height: 8),
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _c,
+      builder: (context, _) {
+        return Stack(
+          children: [
+            _circle(90, 0.2, 0.1, Colors.white),
+            _circle(140, 0.7, 0.2, Colors.white),
+            _circle(70, 0.5, 0.8, Colors.white),
+          ],
+        );
+      },
+    );
+  }
 
-              const Text(
-                'Nunua Vyakula kwa Urahisi',
-                style: TextStyle(color: Colors.white70, fontSize: 14),
-              ),
-            ],
-          ),
+  Widget _circle(double size, double dx, double dy, Color color) {
+    return Positioned(
+      left: 80 + (dx * 120 * _c.value),
+      top: 120 + (dy * 220 * (1 - _c.value)),
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.08), // soft white on green
+          shape: BoxShape.circle,
         ),
       ),
+    );
+  }
+}
+
+class _CleanSplash extends StatefulWidget {
+  const _CleanSplash();
+
+  @override
+  State<_CleanSplash> createState() => _CleanSplashState();
+}
+
+class _CleanSplashState extends State<_CleanSplash>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _c;
+
+  late Animation<double> scale;
+  late Animation<double> fade;
+  late Animation<Offset> slide;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _c = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1800),
+    );
+
+    scale = CurvedAnimation(parent: _c, curve: Curves.easeOutBack);
+
+    fade = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _c, curve: const Interval(0.0, 0.6)));
+
+    slide = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _c, curve: Curves.easeOutCubic));
+
+    _c.forward();
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _c,
+      builder: (context, _) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // LOGO (NO GLOW, CLEAN)
+            Transform.scale(
+              scale: scale.value,
+              child: Opacity(
+                opacity: fade.value,
+                child: SvgPicture.asset(
+                  'assets/svg/genge_logo.svg',
+                  height: 100.h,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // TITLE
+            SlideTransition(
+              position: slide,
+              child: Opacity(
+                opacity: fade.value,
+                child: Text(
+                  "GENGE",
+                  style: TextStyle(
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                    letterSpacing: 7,
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            // SUBTITLE
+            SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 0.2),
+                end: Offset.zero,
+              ).animate(_c),
+              child: Opacity(
+                opacity: fade.value,
+                child: Text(
+                  "Nunua Vyakula kwa Urahisi",
+                  style: TextStyle(fontSize: 12.sp, color: Colors.white70),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

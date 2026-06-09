@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:genge_app/core/theme/app_theme.dart';
+import 'package:genge_app/features/splash/splash_view.dart';
 import 'package:get/get.dart';
-
-import 'core/theme/app_theme.dart';
-import 'routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +13,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812), // base design (iPhone 11/12/13)
+      minTextAdapt: true,
+      splitScreenMode: true,
 
-      title: 'GENGE',
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
 
-      theme: AppTheme.lightTheme,
+          // ✅ YOUR THEME (Poppins will now work)
+          theme: AppTheme.lightTheme,
 
-      initialRoute: AppPages.INITIAL,
+          // optional: keeps navigation clean
+          defaultTransition: Transition.fade,
 
-      getPages: AppPages.routes,
+          // ✅ INITIAL SCREEN
+          home: const SplashView(),
+        );
+      },
     );
   }
 }
