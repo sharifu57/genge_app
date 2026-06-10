@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:genge_app/features/splash/splash_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../core/theme/app_colors.dart';
 
-class SplashView extends GetView<dynamic> {
+class SplashView extends GetView<SplashController> {
   const SplashView({super.key});
 
   @override

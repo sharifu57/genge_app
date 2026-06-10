@@ -1,3 +1,5 @@
+import 'package:genge_app/features/onboarding/onboarding_binding.dart';
+import 'package:genge_app/features/onboarding/onboarding_view.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -5,9 +7,10 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 
+    print("🚀 SplashController initialized");
+
     Future.delayed(const Duration(seconds: 3), () {
-      // Navigate later
-      // Get.offNamed('/onboarding');
+      Get.offAllNamed('/onboarding');
     });
   }
 }
