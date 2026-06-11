@@ -1,3 +1,5 @@
+import 'package:genge_app/features/auth/signIn/signIn_binding.dart';
+import 'package:genge_app/features/auth/signIn/signIn_view.dart';
 import 'package:genge_app/features/onboarding/onboarding_binding.dart';
 import 'package:genge_app/features/onboarding/onboarding_view.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,12 @@ class AppPages {
       name: '/onboarding',
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
+    ),
+
+    GetPage(
+      name: '/signin',
+      page: () => SignInView(),
+      binding: SignInBinding(),
     ),
   ];
 }
