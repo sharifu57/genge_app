@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/widgets/app_loading.dart';
+
 class SignInController extends GetxController {
   final fullNameController = TextEditingController();
   final phoneController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  void signIn() {
-    if (formKey.currentState!.validate()) {
-      Get.snackbar(
-        "Success",
-        "OTP will be sent to ${phoneController.text}",
-        snackPosition: SnackPosition.BOTTOM,
+  Future<void> signIn() async {
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+
+    AppLoading.show();
+
+    try {
+      await Future.delayed(
+        const Duration(seconds: 3),
       );
 
-      // TODO:
-      // Call API
-      // Navigate to OTP screen
+      AppLoading.hide();
+
+      Get.snackbar(
+        "Success",
+        "OTP imetumwa",
+      );
+
+      // Navigate here
+      // Get.toNamed('/otp');
+    } catch (e) {
+      AppLoading.hide();
+
+      Get.snackbar(
+        "Error",
+        e.toString(),
+      );
     }
   }
 
@@ -27,4 +46,6 @@ class SignInController extends GetxController {
     phoneController.dispose();
     super.onClose();
   }
+
+
 }

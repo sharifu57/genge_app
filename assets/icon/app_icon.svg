@@ -1,0 +1,26 @@
+<svg width="1024" height="1024" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Background (important for app icons) -->
+    <rect width="200" height="200" rx="40" fill="#ffffff"/>
+
+    <!-- Main body -->
+    <path d="M60 75
+           L140 75
+           L132 135
+           L68 135
+           Z"
+        fill="#16A34A"/>
+
+    <!-- Wheels -->
+    <circle cx="80" cy="150" r="9" fill="#F97316"/>
+    <circle cx="120" cy="150" r="9" fill="#F97316"/>
+
+    <!-- Top arc (slightly refined) -->
+    <path d="M75 55
+           C75 30 125 30 125 55"
+        stroke="#16A34A"
+        stroke-width="10"
+        stroke-linecap="round"
+        fill="none"/>
+
+</svg>

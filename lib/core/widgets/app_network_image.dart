@@ -27,11 +27,11 @@ class AppNetworkImage extends StatelessWidget {
         height: height,
         fit: fit,
 
-        placeholder: (_, __) => const Center(
+        placeholder: (_, _) => const Center(
           child: CircularProgressIndicator(),
         ),
 
-        errorWidget: (_, __, ___) => const Icon(
+        errorWidget: (_, _, _) => const Icon(
           Icons.image_not_supported,
         ),
       ),
