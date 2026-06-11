@@ -12,12 +12,9 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
       body: SafeArea(
         child: Column(
           children: [
-            /// Skip
             Padding(
               padding: EdgeInsets.only(top: 10.h, right: 20.w),
               child: Align(
@@ -27,7 +24,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   child: Text(
                     "Ruka",
                     style: TextStyle(
-                      fontSize: 15.sp,
+                      fontSize: 13.sp,
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
                     ),
@@ -53,12 +50,10 @@ class OnboardingView extends GetView<OnboardingController> {
               ),
             ),
 
-            /// Bottom
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 30.h),
               child: Row(
                 children: [
-                  /// Indicators
                   Obx(
                     () => Row(
                       children: List.generate(controller.pages.length, (index) {
@@ -86,7 +81,6 @@ class OnboardingView extends GetView<OnboardingController> {
 
                   const Spacer(),
 
-                  /// Next Button
                   ElevatedButton(
                     onPressed: controller.nextPage,
 
@@ -94,8 +88,8 @@ class OnboardingView extends GetView<OnboardingController> {
                       backgroundColor: AppColors.primary,
 
                       padding: EdgeInsets.symmetric(
-                        horizontal: 28.w,
-                        vertical: 14.h,
+                        horizontal: 22.w,
+                        vertical: 12.h,
                       ),
 
                       shape: RoundedRectangleBorder(

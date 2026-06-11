@@ -1,5 +1,3 @@
-import 'package:genge_app/features/onboarding/onboarding_binding.dart';
-import 'package:genge_app/features/onboarding/onboarding_view.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {

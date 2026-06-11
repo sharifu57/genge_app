@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_theme.dart';
-import 'package:genge_app/features/splash/splash_view.dart';
 import 'package:genge_app/routes/app_pages.dart';
 import 'package:get/get.dart';
 

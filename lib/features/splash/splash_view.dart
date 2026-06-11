@@ -72,7 +72,7 @@ class _SoftFloatingShapesState extends State<_SoftFloatingShapes>
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: color.withOpacity(0.08), // soft white on green
+          color: color.withValues(alpha: 0.08), // soft white on green
           shape: BoxShape.circle,
         ),
       ),
@@ -133,7 +133,6 @@ class _CleanSplashState extends State<_CleanSplash>
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // LOGO (NO GLOW, CLEAN)
             Transform.scale(
               scale: scale.value,
               child: Opacity(

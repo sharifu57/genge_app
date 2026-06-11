@@ -18,11 +18,11 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFFF8FFF9), Color(0xFFFFFFFF)],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topCenter,
+        //   end: Alignment.bottomCenter,
+        //   colors: [Color(0xFFF8FFF9), Color(0xFFFFFFFF)],
+        // ),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
