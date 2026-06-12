@@ -168,7 +168,6 @@ class SignInView extends GetView<SignInController> {
 
                   child: Column(
                     children: [
-                      /// Badge
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 14.w,
