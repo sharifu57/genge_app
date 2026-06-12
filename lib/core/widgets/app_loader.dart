@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:genge_app/core/theme/app_sizes.dart';
 
 class AppLoader extends StatefulWidget {
   const AppLoader({super.key});
@@ -75,7 +76,7 @@ class _AppLoaderState extends State<AppLoader>
                         "Tafadhali subiri kidogo...",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: AppSizes.fontSM,
                           color: Colors.white70,
                         ),
                       ),

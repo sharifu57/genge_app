@@ -40,7 +40,6 @@ class SignInView extends GetView<SignInController> {
 
               child: Stack(
                 children: [
-                  /// Floating circles
                   Positioned(
                     top: -40,
                     right: -30,
@@ -318,7 +317,6 @@ class SignInView extends GetView<SignInController> {
               ),
             ),
 
-            /// TERMS
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
 
@@ -326,7 +324,7 @@ class SignInView extends GetView<SignInController> {
                 "Kwa kuendelea unakubali Sheria na Masharti ya GENGE",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.plusJakartaSans(
-                  fontSize: 12.sp,
+                  fontSize: AppSizes.fontSM,
                   color: Colors.grey.shade600,
                 ),
               ),
