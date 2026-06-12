@@ -43,7 +43,11 @@ class SignInController extends GetxController {
         AppSnackBar.success(response["message"] ??
             "OTP imetumwa",);
 
-        Get.offAllNamed("/otp", arguments: phone);
+        Get.offAllNamed("/otp", arguments: {
+          "phone": phone,
+          "token": response['token'],
+          "refreshToken": response["refreshToken"]
+        });
 
       }else {
         AppLoading.hide();

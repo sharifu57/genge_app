@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_colors.dart';
+import 'package:genge_app/core/theme/app_sizes.dart';
 import 'package:genge_app/core/widgets/app_button.dart';
 import 'package:genge_app/features/auth/otp/otp_controller.dart';
 import 'package:get/get.dart';
@@ -49,8 +50,8 @@ class OtpView extends GetView<OtpController> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 20.h,
+            horizontal: AppSizes.horizontal,
+            vertical: AppSizes.vertical,
           ),
 
           child: Form(
@@ -111,7 +112,7 @@ class OtpView extends GetView<OtpController> {
                 Text(
                   "Thibitisha OTP",
                   style: GoogleFonts.plusJakartaSans(
-                    fontSize: 24.sp,
+                    fontSize: AppSizes.fontXL,
                     fontWeight: FontWeight.w800,
                     color: AppColors.textPrimary,
                   ),
@@ -123,19 +124,19 @@ class OtpView extends GetView<OtpController> {
                   "Weka tarakimu 6 zilizotumwa kwenye simu yako",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.plusJakartaSans(
-                    fontSize: 13.sp,
+                    fontSize: AppSizes.fontMD,
                     color: AppColors.textSecondary,
                   ),
                 ),
 
-                SizedBox(height: 8.h),
+                SizedBox(height: 5.h),
 
                 Text(
                   controller.phone,
                   style: GoogleFonts.plusJakartaSans(
                     color: AppColors.primary,
                     fontWeight: FontWeight.w700,
-                    fontSize: 14.sp,
+                    fontSize: AppSizes.fontMD,
                   ),
                 ),
 

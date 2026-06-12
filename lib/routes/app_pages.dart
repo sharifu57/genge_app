@@ -4,10 +4,13 @@ import 'package:genge_app/features/auth/signIn/signIn_binding.dart';
 import 'package:genge_app/features/auth/signIn/signIn_view.dart';
 import 'package:genge_app/features/onboarding/onboarding_binding.dart';
 import 'package:genge_app/features/onboarding/onboarding_view.dart';
+import 'package:genge_app/features/wrapper/wrapper_binding.dart';
+import 'package:genge_app/features/wrapper/wrapper_view.dart';
 import 'package:get/get.dart';
 
 import '../features/splash/splash_binding.dart';
 import '../features/splash/splash_view.dart';
+import '../features/wrapper/wrapper_controller.dart';
 
 class AppPages {
   static final routes = [
@@ -29,6 +32,14 @@ class AppPages {
       binding: SignInBinding(),
     ),
     
-    GetPage(name: "/otp", page: ()=> OtpView(), binding: OtpBinding())
+    GetPage(name: "/otp", page: ()=> OtpView(), binding: OtpBinding()),
+
+    GetPage(
+      name: '/wrapper',
+      page: () => const WrapperView(),
+      binding: BindingsBuilder(() {
+        Get.put(WrapperController());
+      }),
+    ),
   ];
 }
