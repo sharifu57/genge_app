@@ -2,6 +2,8 @@ import 'package:genge_app/features/auth/otp/otp_binding.dart';
 import 'package:genge_app/features/auth/otp/otp_view.dart';
 import 'package:genge_app/features/auth/signIn/signIn_binding.dart';
 import 'package:genge_app/features/auth/signIn/signIn_view.dart';
+import 'package:genge_app/features/home/home_binding.dart';
+import 'package:genge_app/features/home/home_view.dart';
 import 'package:genge_app/features/onboarding/onboarding_binding.dart';
 import 'package:genge_app/features/onboarding/onboarding_view.dart';
 import 'package:genge_app/features/wrapper/wrapper_binding.dart';
@@ -33,13 +35,18 @@ class AppPages {
     ),
     
     GetPage(name: "/otp", page: ()=> OtpView(), binding: OtpBinding()),
+    GetPage(
+      name: '/home',
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
 
     GetPage(
       name: '/wrapper',
       page: () => const WrapperView(),
-      binding: BindingsBuilder(() {
-        Get.put(WrapperController());
-      }),
+      binding: WrapperBinding(),
     ),
+
+
   ];
 }

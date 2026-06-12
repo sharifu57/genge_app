@@ -27,6 +27,8 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to show nearby delivery areas</string>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>

@@ -81,17 +81,17 @@ class AnimatedBottomNav extends StatelessWidget {
         children: [
           buildItem(
             icon: Icons.home,
-            label: "Home",
+            label: "Mwanzo",
             index: 0,
           ),
           buildItem(
             icon: Icons.receipt_long,
-            label: "Orders",
+            label: "Oda",
             index: 1,
           ),
           buildItem(
             icon: Icons.shopping_cart,
-            label: "Cart",
+            label: "Kikapu",
             index: 2,
             badge: cartCount > 0
                 ? Container(
@@ -112,7 +112,7 @@ class AnimatedBottomNav extends StatelessWidget {
           ),
           buildItem(
             icon: Icons.person,
-            label: "Profile",
+            label: "Akaunti",
             index: 3,
           ),
         ],
