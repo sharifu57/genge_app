@@ -80,59 +80,57 @@ class SignInView extends GetView<SignInController> {
                   ),
 
                   SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(18.r),
-
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-
-                              borderRadius: BorderRadius.circular(28.r),
-
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: .08),
-                                  blurRadius: 25,
-                                  offset: const Offset(0, 10),
+                    child: SizedBox.expand(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(13.r),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(25.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(alpha: .08),
+                                      blurRadius: 25,
+                                      offset: const Offset(0, 10),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-
-                            child: const AppLogo(height: 70),
-                          ),
-
-                          SizedBox(height: 20.h),
-
-                          Text(
-                            "Karibu GENGE",
-                            style: GoogleFonts.plusJakartaSans(
-                              fontSize: AppSizes.fontXL,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white,
-                            ),
-                          ),
-
-                          SizedBox(height: 10.h),
-
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30.w),
-                            child: Text(
-                              "Agiza mboga, matunda, nyama na bidhaa za kila siku kwa urahisi.",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.plusJakartaSans(
-                                fontSize: AppSizes.fontMD,
-                                color: Colors.white.withValues(alpha: .9),
-                                height: 1.5,
+                                child: const AppLogo(height: 70),
                               ),
-                            ),
+
+                              SizedBox(height: 20.h),
+
+                              Text(
+                                "Karibu GENGE",
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: AppSizes.fontXL ,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white,
+                                ),
+                              ),
+
+                              SizedBox(height: 2.h),
+
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 30.w),
+                                child: Text(
+                                  "Ingiza Taarifa Zako.",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.plusJakartaSans(
+                                    fontSize: AppSizes.fontMD,
+                                    color: Colors.white.withValues(alpha: .9),
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 20.h),
-                        ],
+                        ),
                       ),
                     ),
                   ),
@@ -249,6 +247,7 @@ class SignInView extends GetView<SignInController> {
                         controller: controller.phoneController,
                         hintText: "07XXXXXXXX",
                         keyboardType: TextInputType.phone,
+                        maxLength: 10,
 
                         prefixIcon: const Icon(
                           Icons.phone_outlined,
@@ -275,7 +274,6 @@ class SignInView extends GetView<SignInController> {
 
                       SizedBox(height: 20.h),
 
-                      /// Security Label
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 12.w,
@@ -323,7 +321,7 @@ class SignInView extends GetView<SignInController> {
                 "Kwa kuendelea unakubali Sheria na Masharti ya GENGE",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.plusJakartaSans(
-                  fontSize: AppSizes.fontSM,
+                  fontSize: AppSizes.fontXS,
                   color: Colors.grey.shade600,
                 ),
               ),

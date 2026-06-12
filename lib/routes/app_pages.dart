@@ -1,3 +1,5 @@
+import 'package:genge_app/features/auth/otp/otp_binding.dart';
+import 'package:genge_app/features/auth/otp/otp_view.dart';
 import 'package:genge_app/features/auth/signIn/signIn_binding.dart';
 import 'package:genge_app/features/auth/signIn/signIn_view.dart';
 import 'package:genge_app/features/onboarding/onboarding_binding.dart';
@@ -26,5 +28,7 @@ class AppPages {
       page: () => SignInView(),
       binding: SignInBinding(),
     ),
+    
+    GetPage(name: "/otp", page: ()=> OtpView(), binding: OtpBinding())
   ];
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genge_app/core/storage/secure_storage.dart';
+import 'package:genge_app/core/widgets/app_snackbar.dart';
 import 'package:genge_app/features/auth/data/models/sign_in_request.dart';
 import 'package:genge_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:get/get.dart';
@@ -18,9 +19,12 @@ class SignInController extends GetxController {
       return;
     }
     AppLoading.show();
-
+    String phone = phoneController.text.trim();
+    if(phone.startsWith('0')){
+      phone = '255${phone.substring(1)}';
+    }
     try{
-      final request = SignInRequest(fullName: fullNameController.text.trim(), phone: phoneController.text.trim());
+      final request = SignInRequest(fullName: fullNameController.text.trim(), phone: phone);
       final response = await _repository.signIn(request);
 
       if(response["status"] == true){
@@ -35,27 +39,22 @@ class SignInController extends GetxController {
         }
 
         AppLoading.hide();
+        
+        AppSnackBar.success(response["message"] ??
+            "OTP imetumwa",);
 
-        Get.snackbar(
-          "Success",
-          response["message"] ??
-              "OTP imetumwa",
-        );
+        Get.offAllNamed("/otp", arguments: phone);
+
       }else {
         AppLoading.hide();
+        
+        AppSnackBar.error(response["message"] ??
+            "Imeshindikana",);
 
-        Get.snackbar(
-          "Error",
-          response["message"] ??
-              "Imeshindikana",
-        );
       }
     }catch (e) {
       AppLoading.hide();
-      Get.snackbar(
-        "Error",
-        e.toString(),
-      );
+      AppSnackBar.error(e.toString());
     }
   }
 
