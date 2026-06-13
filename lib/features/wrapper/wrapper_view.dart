@@ -18,7 +18,10 @@ class WrapperView extends GetView<WrapperController> {
       return Scaffold(
         appBar: HomeAppBar(),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontal),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSizes.horizontal,
+            vertical: AppSizes.vertical,
+          ),
           child: IndexedStack(
             index: controller.selectedIndex.value,
             children: pages,

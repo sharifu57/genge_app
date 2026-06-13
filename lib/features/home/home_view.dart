@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_colors.dart';
 import 'package:genge_app/core/theme/app_sizes.dart';
 import 'package:genge_app/core/widgets/app_text_field.dart';
+import 'package:genge_app/data/repositories/category_data.dart';
 import 'package:genge_app/features/home/home_controller.dart';
+import 'package:genge_app/features/home/widgets/favorite_products.dart';
 import 'package:get/get.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -14,153 +16,247 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: HomeAppBar(),
-      body: Column(
-        children: [
-          SizedBox(height: 10.h),
-
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Wrap(
-              children: [
-                Obx(
-                  () => Row(
-                    children: [
-                      Text(
-                        textAlign: TextAlign.start,
-                        "Karibu, ",
-                        style: TextStyle(
-                          fontSize: AppSizes.fontMD,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.secondary,
-                        ),
-                      ),
-                      Text(
-                        textAlign: TextAlign.start,
-                        controller.fullName.value,
-                        style: TextStyle(
-                          fontSize: AppSizes.fontSM,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          SizedBox(height: 10.h),
-
-          AppTextField(
-            controller: controller.searchController,
-            hintText: "Tafuta bidhaa",
-            prefixIcon: Icon(CupertinoIcons.search, color: AppColors.primary),
-          ),
-
-          SizedBox(height: 20.h),
-
-          //MAKE A BARNER WITH A BACKGROUNG IMAGE OF VEGETABLES AND ON FRONT A BUTTON FOR ORDER NOW
-          Container(
-            height: 150.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.r),
-              child: Stack(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Wrap(
                 children: [
-                  /// Background Image
-                  Positioned.fill(
-                    child: Image.asset(
-                      "assets/images/groceries.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-
-                  /// Primary Color Overlay
-                  Positioned.fill(
-                    child: Container(
-                      color: AppColors.primary.withValues(alpha: 0.65),
-                    ),
-                  ),
-
-                  /// Content
-                  Positioned.fill(
-                    child: Padding(
-                      padding: EdgeInsets.all(18.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "OFA YA LEO",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: AppSizes.fontXS,
-                              fontWeight: FontWeight.w700,
-                            ),
+                  Obx(
+                    () => Row(
+                      children: [
+                        Text(
+                          textAlign: TextAlign.start,
+                          "Karibu, ",
+                          style: TextStyle(
+                            fontSize: AppSizes.fontMD,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.secondary,
                           ),
-
-                          SizedBox(height: 3.h),
-
-                          Text(
-                            "Mboga fresh kutoka shamba",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: AppSizes.fontLG - 2.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        Text(
+                          textAlign: TextAlign.start,
+                          controller.fullName.value,
+                          style: TextStyle(
+                            fontSize: AppSizes.fontSM,
+                            fontWeight: FontWeight.w500,
                           ),
-
-                          SizedBox(height: 5.h),
-
-                          Text(
-                            "Pata punguzo la 20% + usafirishaji bure",
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.9),
-                              fontSize: AppSizes.fontSM - 2.sp,
-                            ),
-                          ),
-
-                          const Spacer(),
-
-                          ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.shopping_bag_outlined,
-                              color: Colors.white,
-                            ),
-                            label: Text(
-                              "Agiza Sasa",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: AppSizes.fontSM - 2.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.secondary,
-                              elevation: 0,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 18.w,
-                                vertical: 10.h,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
-                                side: BorderSide(
-                                  color: Colors.white.withValues(alpha: 0.3),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+
+            SizedBox(height: 10.h),
+
+            AppTextField(
+              controller: controller.searchController,
+              hintText: "Tafuta bidhaa",
+              prefixIcon: Icon(CupertinoIcons.search, color: AppColors.primary),
+            ),
+
+            SizedBox(height: 20.h),
+
+            //MAKE A BARNER WITH A BACKGROUNG IMAGE OF VEGETABLES AND ON FRONT A BUTTON FOR ORDER NOW
+            Container(
+              height: 150.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.r),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.r),
+                child: Stack(
+                  children: [
+                    /// Background Image
+                    Positioned.fill(
+                      child: Image.asset(
+                        "assets/images/groceries.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    /// Primary Color Overlay
+                    Positioned.fill(
+                      child: Container(
+                        color: AppColors.primary.withValues(alpha: 0.65),
+                      ),
+                    ),
+
+                    /// Content
+                    Positioned.fill(
+                      child: Padding(
+                        padding: EdgeInsets.all(18.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "OFA YA LEO",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: AppSizes.fontXS,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+
+                            SizedBox(height: 3.h),
+
+                            Text(
+                              "Mboga fresh kutoka shamba",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: AppSizes.fontLG - 2.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            SizedBox(height: 5.h),
+
+                            Text(
+                              "Pata punguzo la 20% + usafirishaji bure",
+                              style: TextStyle(
+                                color: Colors.white.withValues(alpha: 0.9),
+                                fontSize: AppSizes.fontSM - 2.sp,
+                              ),
+                            ),
+
+                            const Spacer(),
+
+                            ElevatedButton.icon(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.shopping_bag_outlined,
+                                color: Colors.white,
+                              ),
+                              label: Text(
+                                "Agiza Sasa",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: AppSizes.fontSM - 2.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.secondary,
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 18.w,
+                                  vertical: 10.h,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  side: BorderSide(
+                                    color: Colors.white.withValues(alpha: 0.3),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Makundi",
+                  style: TextStyle(
+                    fontSize: AppSizes.fontMD,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Zote",
+                    style: TextStyle(
+                      fontSize: AppSizes.fontSM,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 10.h),
+            categoryCard(),
+
+            SizedBox(height: 20.h),
+
+            FavoriteProducts(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget categoryCard() {
+    return SizedBox(
+      height: 270.h,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: categories.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 12.w,
+          mainAxisSpacing: 12.h,
+          childAspectRatio: 0.9,
+        ),
+        itemBuilder: (context, index) {
+          final category = categories[index];
+
+          return GestureDetector(
+            onTap: () {
+              print("Tapped on category: ${category.name}");
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14.r),
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: .15),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: .03),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(category.emoji, style: TextStyle(fontSize: 24.sp)),
+
+                  SizedBox(height: 8.h),
+
+                  Text(
+                    category.name,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: AppSizes.fontXS,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

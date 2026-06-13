@@ -2,7 +2,7 @@
 
 import 'package:genge_app/core/network/api_client.dart';
 import 'package:genge_app/core/network/api_endpoints.dart';
-import 'package:genge_app/features/auth/data/models/otp_verify_request.dart';
+import 'package:genge_app/data/models/otp_verify_request.dart';
 
 class OtpRepository {
   final ApiClient _apiClient = ApiClient();

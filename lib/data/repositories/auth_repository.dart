@@ -1,6 +1,6 @@
 import 'package:genge_app/core/network/api_client.dart';
 import 'package:genge_app/core/network/api_endpoints.dart';
-import 'package:genge_app/features/auth/data/models/sign_in_request.dart';
+import 'package:genge_app/data/models/sign_in_request.dart';
 
 class AuthRepository {
   final ApiClient _apiClient = ApiClient();
