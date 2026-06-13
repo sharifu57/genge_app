@@ -1,4 +1,3 @@
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
@@ -32,23 +31,27 @@ class SecureStorage {
     await _storage.deleteAll();
   }
 
-  static Future<void> saveFullName(String name) async {
-    return await _storage.write(key: fullName, value: name);
-  }
-
-  static Future<String?> getFullName() async {
-    return await _storage.read(key: fullName);
-  }
-
   static Future<String?> getUserId() async {
     return await _storage.read(key: userIdKey);
+  }
+
+  static Future<String?> getUserFullName() async {
+    return await _storage.read(key: fullNameKey);
   }
 
   static Future<String?> getPhone() async {
     return await _storage.read(key: phoneKey);
   }
 
-  static Future<void> saveUser({required int id, required String fullName, required String phone}) async {
+  static Future<String?> getFullName() async {
+    return await _storage.read(key: fullNameKey);
+  }
+
+  static Future<void> saveUser({
+    required int id,
+    required String fullName,
+    required String phone,
+  }) async {
     await _storage.write(key: userIdKey, value: id.toString());
     await _storage.write(key: fullNameKey, value: fullName);
     await _storage.write(key: phoneKey, value: phone);

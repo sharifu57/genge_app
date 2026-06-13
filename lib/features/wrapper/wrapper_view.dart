@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:genge_app/core/theme/app_sizes.dart';
+import 'package:genge_app/core/widgets/home_app_bar.dart';
 import 'package:get/get.dart';
 
 import 'package:genge_app/core/widgets/animated_bottom_nav.dart';
@@ -10,15 +12,17 @@ class WrapperView extends GetView<WrapperController> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = const [
-      HomeView(),
-    ];
+    final pages = const [HomeView()];
 
     return Obx(() {
       return Scaffold(
-        body: IndexedStack(
-          index: controller.selectedIndex.value,
-          children: pages,
+        appBar: HomeAppBar(),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontal),
+          child: IndexedStack(
+            index: controller.selectedIndex.value,
+            children: pages,
+          ),
         ),
 
         bottomNavigationBar: AnimatedBottomNav(

@@ -9,7 +9,6 @@ import 'package:genge_app/features/auth/data/repositories/otp_repository.dart';
 import 'package:get/get.dart';
 
 class OtpController extends GetxController {
-
   final otpController = TextEditingController();
   final secondsRemaining = 60.obs;
 
@@ -26,21 +25,23 @@ class OtpController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    phone = Get.arguments?["phone"]?? "";
+    phone = Get.arguments?["phone"] ?? "";
     startTimer();
   }
-  void startTimer(){
+
+  void startTimer() {
     secondsRemaining.value = 60;
     _timer?.cancel();
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer){
-      if(secondsRemaining.value == 0){
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (secondsRemaining.value == 0) {
         timer.cancel();
-      }else{
+      } else {
         secondsRemaining.value--;
       }
     });
   }
+
   Future<void> verifyOtp() async {
     if (!formKey.currentState!.validate()) {
       return;
@@ -49,22 +50,27 @@ class OtpController extends GetxController {
     AppLoading.show();
     String otp = otpController.text.trim();
 
-    try{
+    try {
       final request = OtpVerifyRequest(phone: phone, otp: otp);
       final response = await _repository.otpVerification(request);
 
-      if(response['status'] == true){
+      if (response['status'] == true) {
         AppLoading.hide();
 
         final user = response['data'];
-        await SecureStorage.saveUser(id: user['id'], fullName: user['fullName'], phone: user['phone']);
-        AppSnackBar.success(response['message']?? "Imefanikiwa.");
+        await SecureStorage.saveUser(
+          id: user['id'],
+          fullName: user['fullName'],
+          phone: user['phone'],
+        );
+
+        AppSnackBar.success(response['message'] ?? "Imefanikiwa.");
         Get.offAllNamed("/wrapper");
-      }else{
+      } else {
         AppLoading.hide();
-        AppSnackBar.error(response['message']?? "Imeshindikana.");
+        AppSnackBar.error(response['message'] ?? "Imeshindikana.");
       }
-    }catch(e){
+    } catch (e) {
       AppLoading.hide();
       AppSnackBar.error(e.toString());
     }

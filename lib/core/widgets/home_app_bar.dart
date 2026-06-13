@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,15 +6,10 @@ import '../../features/home/home_controller.dart';
 import '../theme/app_colors.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-
   final int notificationCount;
   final VoidCallback? onNotificationTap;
 
-  HomeAppBar({
-    super.key,
-    this.notificationCount = 0,
-    this.onNotificationTap,
-  });
+  HomeAppBar({super.key, this.notificationCount = 0, this.onNotificationTap});
 
   final HomeController controller = Get.find<HomeController>();
 
@@ -37,22 +31,22 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Deliver to", style: TextStyle(fontSize: 11)),
+                  const Text("Italetwa", style: TextStyle(fontSize: 11)),
 
                   controller.isLoadingLocation.value
                       ? const SizedBox(
-                    height: 12,
-                    width: 12,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
+                          height: 12,
+                          width: 12,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
                       : Text(
-                    controller.locationName.value,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
+                          controller.locationName.value,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -72,8 +66,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       color: AppColors.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Icon(Icons.notifications_none,
-                        color: AppColors.primary),
+                    child: Icon(
+                      Icons.notifications_none,
+                      color: AppColors.primary,
+                    ),
                   ),
                 ),
               ],
