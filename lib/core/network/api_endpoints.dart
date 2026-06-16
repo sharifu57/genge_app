@@ -4,4 +4,5 @@ class ApiEndpoints {
   static const String refreshToken = "/auth/refresh-token";
 
   static const String fetchCategories = "/category/fetch-all";
+  static const String fetchProducts = "/product/fetch-all";
 }

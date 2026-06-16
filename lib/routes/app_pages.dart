@@ -6,6 +6,8 @@ import 'package:genge_app/features/home/home_binding.dart';
 import 'package:genge_app/features/home/home_view.dart';
 import 'package:genge_app/features/onboarding/onboarding_binding.dart';
 import 'package:genge_app/features/onboarding/onboarding_view.dart';
+import 'package:genge_app/features/product/product_binding.dart';
+import 'package:genge_app/features/product/product_view.dart';
 import 'package:genge_app/features/wrapper/wrapper_binding.dart';
 import 'package:genge_app/features/wrapper/wrapper_view.dart';
 import 'package:get/get.dart';
@@ -33,8 +35,8 @@ class AppPages {
       page: () => SignInView(),
       binding: SignInBinding(),
     ),
-    
-    GetPage(name: "/otp", page: ()=> OtpView(), binding: OtpBinding()),
+
+    GetPage(name: "/otp", page: () => OtpView(), binding: OtpBinding()),
     GetPage(
       name: '/home',
       page: () => const HomeView(),
@@ -47,6 +49,10 @@ class AppPages {
       binding: WrapperBinding(),
     ),
 
-
+    GetPage(
+      name: '/product',
+      page: () => const ProductView(),
+      binding: ProductBinding(),
+    ),
   ];
 }

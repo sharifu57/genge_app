@@ -202,18 +202,14 @@ class HomeView extends GetView<HomeController> {
       if (controller.isLoadingCategories.value) {
         return SizedBox(
           height: 270.h,
-          child: const Center(
-            child: AppLoader(),
-          ),
+          child: const Center(child: AppLoader()),
         );
       }
 
       if (controller.categories.isEmpty) {
         return SizedBox(
           height: 270.h,
-          child: const Center(
-            child: Text("No categories available"),
-          ),
+          child: const Center(child: Text("No categories available")),
         );
       }
 
@@ -233,28 +229,27 @@ class HomeView extends GetView<HomeController> {
 
             return GestureDetector(
               onTap: () {
-                debugPrint(
-                  "Tapped on category: ${category.name}",
+                debugPrint("Tapped on category: ${category.name}");
+
+                Get.offAllNamed(
+                  "/product",
+                  arguments: {
+                    "categoryName": category.name,
+                    "categoryRowId": category.rowId,
+                  },
                 );
               },
               child: Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: 10.h,
-                  horizontal: 8.w,
-                ),
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(14.r),
                   border: Border.all(
-                    color: AppColors.primary.withValues(
-                      alpha: .15,
-                    ),
+                    color: AppColors.primary.withValues(alpha: .15),
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(
-                        alpha: .03,
-                      ),
+                      color: Colors.black.withValues(alpha: .03),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -266,9 +261,7 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Text(
                         category.imageUrl,
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                        ),
+                        style: TextStyle(fontSize: 24.sp),
                       ),
 
                       SizedBox(height: 8.h),
@@ -285,7 +278,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ],
                   ),
-                )
+                ),
               ),
             );
           },
