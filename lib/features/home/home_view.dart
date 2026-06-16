@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_colors.dart';
 import 'package:genge_app/core/theme/app_sizes.dart';
+import 'package:genge_app/core/widgets/app_loader.dart';
 import 'package:genge_app/core/widgets/app_text_field.dart';
-import 'package:genge_app/data/repositories/category_data.dart';
 import 'package:genge_app/features/home/home_controller.dart';
 import 'package:genge_app/features/home/widgets/favorite_products.dart';
 import 'package:get/get.dart';
@@ -70,7 +70,6 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(16.r),
                 child: Stack(
                   children: [
-                    /// Background Image
                     Positioned.fill(
                       child: Image.asset(
                         "assets/images/groceries.jpg",
@@ -78,14 +77,12 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
 
-                    /// Primary Color Overlay
                     Positioned.fill(
                       child: Container(
                         color: AppColors.primary.withValues(alpha: 0.65),
                       ),
                     ),
 
-                    /// Content
                     Positioned.fill(
                       child: Padding(
                         padding: EdgeInsets.all(18.w),
@@ -201,63 +198,99 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget categoryCard() {
-    return SizedBox(
-      height: 270.h,
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: categories.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 12.w,
-          mainAxisSpacing: 12.h,
-          childAspectRatio: 0.9,
-        ),
-        itemBuilder: (context, index) {
-          final category = categories[index];
+    return Obx(() {
+      if (controller.isLoadingCategories.value) {
+        return SizedBox(
+          height: 270.h,
+          child: const Center(
+            child: AppLoader(),
+          ),
+        );
+      }
 
-          return GestureDetector(
-            onTap: () {
-              print("Tapped on category: ${category.name}");
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(14.r),
-                border: Border.all(
-                  color: AppColors.primary.withValues(alpha: .15),
+      if (controller.categories.isEmpty) {
+        return SizedBox(
+          height: 270.h,
+          child: const Center(
+            child: Text("No categories available"),
+          ),
+        );
+      }
+
+      return SizedBox(
+        height: 270.h,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.categories.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 12.w,
+            mainAxisSpacing: 12.h,
+            childAspectRatio: 0.9,
+          ),
+          itemBuilder: (context, index) {
+            final category = controller.categories[index];
+
+            return GestureDetector(
+              onTap: () {
+                debugPrint(
+                  "Tapped on category: ${category.name}",
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.h,
+                  horizontal: 8.w,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: .03),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(category.emoji, style: TextStyle(fontSize: 24.sp)),
-
-                  SizedBox(height: 8.h),
-
-                  Text(
-                    category.name,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: AppSizes.fontXS,
-                      fontWeight: FontWeight.w500,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.r),
+                  border: Border.all(
+                    color: AppColors.primary.withValues(
+                      alpha: .15,
                     ),
                   ),
-                ],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(
+                        alpha: .03,
+                      ),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        category.imageUrl,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                        ),
+                      ),
+
+                      SizedBox(height: 8.h),
+
+                      Text(
+                        category.name,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: AppSizes.fontXS.sp - 3.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ),
-            ),
-          );
-        },
-      ),
-    );
+            );
+          },
+        ),
+      );
+    });
   }
 }

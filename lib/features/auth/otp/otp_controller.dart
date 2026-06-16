@@ -5,7 +5,7 @@ import 'package:genge_app/core/storage/secure_storage.dart';
 import 'package:genge_app/core/widgets/app_loading.dart';
 import 'package:genge_app/core/widgets/app_snackbar.dart';
 import 'package:genge_app/data/models/otp_verify_request.dart';
-import 'package:genge_app/data/repositories/otp_repository.dart';
+import 'package:genge_app/data/repositories/auth/otp_repository.dart';
 import 'package:get/get.dart';
 
 class OtpController extends GetxController {

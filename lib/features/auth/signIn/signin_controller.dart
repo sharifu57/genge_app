@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:genge_app/core/storage/secure_storage.dart';
 import 'package:genge_app/core/widgets/app_snackbar.dart';
 import 'package:genge_app/data/models/sign_in_request.dart';
-import 'package:genge_app/data/repositories/auth_repository.dart';
+import 'package:genge_app/data/repositories/auth/auth_repository.dart';
 import 'package:get/get.dart';
 
 import '../../../core/widgets/app_loading.dart';

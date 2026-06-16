@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genge_app/core/storage/secure_storage.dart';
+import 'package:genge_app/data/models/category_model.dart';
+import 'package:genge_app/data/repositories/category/category_repository.dart';
 import 'package:get/get.dart';
 
 import '../../core/services/location_service.dart';
@@ -11,17 +13,23 @@ class HomeController extends GetxController {
 
   final fullName = "".obs;
 
+  final CategoryRepository _categoryRepository = CategoryRepository();
+  final categories = <CategoryModel>[].obs;
+  final isLoadingCategories = false.obs;
+
   @override
   void onInit() {
     super.onInit();
     fetchLocation();
     loadUserData();
+    loadCategories();
   }
 
   Future<void> loadUserData() async {
     final name = await SecureStorage.getUserFullName();
-
+    final accessToken = await SecureStorage.getAccessToken();
     print("Stored name: $name");
+    print("ACCESS TOKEN::: $accessToken");
 
     if (name != null) {
       fullName.value = name;
@@ -47,4 +55,18 @@ class HomeController extends GetxController {
     locationName.value = address;
     isLoadingLocation.value = false;
   }
+
+  Future<void> loadCategories() async {
+    try{
+      isLoadingCategories.value = true;
+      final result = await _categoryRepository.getCategories();
+      categories.assignAll(result);
+    }catch(e){
+      print("==>>FAIL TO FETCH CATEG::: $e");
+    }finally{
+      isLoadingCategories.value=false;
+    }
+  }
+
+
 }
