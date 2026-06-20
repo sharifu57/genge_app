@@ -37,7 +37,7 @@ class FavoriteProducts extends StatelessWidget {
 
         SizedBox(height: 10),
 
-        Container(
+        SizedBox(
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,

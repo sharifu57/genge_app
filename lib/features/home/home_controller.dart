@@ -27,9 +27,7 @@ class HomeController extends GetxController {
 
   Future<void> loadUserData() async {
     final name = await SecureStorage.getUserFullName();
-    final accessToken = await SecureStorage.getAccessToken();
-    print("Stored name: $name");
-    print("ACCESS TOKEN::: $accessToken");
+    // final accessToken = await SecureStorage.getAccessToken();
 
     if (name != null) {
       fullName.value = name;
@@ -57,16 +55,12 @@ class HomeController extends GetxController {
   }
 
   Future<void> loadCategories() async {
-    try{
+    try {
       isLoadingCategories.value = true;
       final result = await _categoryRepository.getCategories();
       categories.assignAll(result);
-    }catch(e){
-      print("==>>FAIL TO FETCH CATEG::: $e");
-    }finally{
-      isLoadingCategories.value=false;
+    } finally {
+      isLoadingCategories.value = false;
     }
   }
-
-
 }

@@ -5,4 +5,5 @@ class ApiEndpoints {
 
   static const String fetchCategories = "/category/fetch-all";
   static const String fetchProducts = "/product/fetch-all";
+  static const String fetchProductsByCategory = "/product/products/category";
 }

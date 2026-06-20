@@ -14,7 +14,6 @@ import 'package:get/get.dart';
 
 import '../features/splash/splash_binding.dart';
 import '../features/splash/splash_view.dart';
-import '../features/wrapper/wrapper_controller.dart';
 
 class AppPages {
   static final routes = [
@@ -54,5 +53,6 @@ class AppPages {
       page: () => const ProductView(),
       binding: ProductBinding(),
     ),
+
   ];
 }

@@ -8,7 +8,16 @@ class ProductRepository {
   Future<List<ProductModel>> getProducts() async {
     final response = await _apiClient.get(ApiEndpoints.fetchProducts);
 
-    print("PRODUCT RESPONSE => ${response.data}");
+    final List<dynamic> data = response.data['data'];
+    return data.map((item) => ProductModel.fromJson(item)).toList();
+  }
+
+  Future<List<ProductModel>> getCategoryProducts(String categoryRowId) async {
+    final response = await _apiClient.get(
+      ApiEndpoints.fetchProductsByCategory,
+      queryParameters: {'categoryId': categoryRowId},
+    );
+
     final List<dynamic> data = response.data['data'];
     return data.map((item) => ProductModel.fromJson(item)).toList();
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genge_app/core/theme/app_colors.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AppSnackBar {
   AppSnackBar._();
