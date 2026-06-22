@@ -337,30 +337,39 @@ class ProductView extends GetView<ProductController> {
                     ),
                     SizedBox(height: 8.h),
 
-                    SizedBox(
-                      width: double.infinity,
-                      height: 32.h,
-                      child: ElevatedButton(
-                        onPressed: () =>
-                            controller.cartController.addToCart(product),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                    Obx(() {
+                      final exists = controller.cartController.cartItems.any(
+                        (item) => item.product.rowId == product.rowId,
+                      );
+
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 32.h,
+                        child: ElevatedButton(
+                          onPressed: exists
+                              ? null
+                              : () => controller.cartController.addToCart(
+                                  product,
+                                ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: Text(
+                            exists ? "Imeongezwa" : "Ongeza",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        child: Text(
-                          "Ongeza",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
+                      );
+                    }),
                   ],
                 ),
               ),

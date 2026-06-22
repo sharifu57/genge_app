@@ -8,6 +8,7 @@ class ProductModel {
   final int quantity;
   final String unit;
   final String imageUrl;
+  final String rowId;
   final CategoryModel category;
 
   ProductModel({
@@ -19,6 +20,7 @@ class ProductModel {
     required this.unit,
     required this.imageUrl,
     required this.category,
+    required this.rowId
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class ProductModel {
       quantity: json['quantity'],
       unit: json['unit'],
       imageUrl: json['imageUrl'],
+      rowId: json['rowId'],
       category: CategoryModel.fromJson(json['category']),
     );
   }
