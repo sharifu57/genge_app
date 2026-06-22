@@ -51,7 +51,7 @@ class AnimatedBottomNav extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               style: TextStyle(
                 fontSize: isActive ? 10 : 9,
-                color: isActive ? Colors.green : Colors.grey,
+                color: isActive ? AppColors.primary : Colors.grey,
                 fontWeight:
                 isActive ? FontWeight.bold : FontWeight.normal,
               ),
