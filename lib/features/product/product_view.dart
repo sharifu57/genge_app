@@ -350,6 +350,7 @@ class ProductView extends GetView<ProductController> {
                               ? null
                               : () => controller.cartController.addToCart(
                                   product,
+                                  1,
                                 ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,

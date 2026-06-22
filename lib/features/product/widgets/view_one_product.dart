@@ -137,11 +137,11 @@ class _ViewOneProductState extends State<ViewOneProduct> {
                 height: 50.h,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    controller.cartController.addToCart(product);
+                    controller.cartController.addToCart(product, quantity);
                   },
                   icon: Icon(Icons.shopping_cart, size: 12.sp),
                   label: Text(
-                    "Ongeza TZS ${(displayPrice * quantity).toStringAsFixed(0)}",
+                    "Ongeza ${product.unit} $quantity sawa na TZS ${(displayPrice * quantity).toStringAsFixed(0)}",
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
