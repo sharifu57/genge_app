@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_theme.dart';
 import 'package:genge_app/features/cart/cart_controller.dart';
+import 'package:genge_app/features/wrapper/wrapper_controller.dart';
 import 'package:genge_app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 void main() {
   Get.put(CartController(), permanent: true); //WE SET IT GLOBALY
+  Get.put(WrapperController(), permanent: true);
   runApp(const MyApp());
 }
 

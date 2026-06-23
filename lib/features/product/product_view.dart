@@ -28,7 +28,13 @@ class ProductView extends GetView<ProductController> {
             () => Stack(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // print(Get.isRegistered<WrapperController>());
+                    // Get.find<WrapperController>().goToCart();
+                    // Get.back();
+
+                    Get.offAllNamed('/wrapper', arguments: {'tab': 2});
+                  },
                   icon: Icon(Icons.shopping_cart_outlined),
                 ),
 

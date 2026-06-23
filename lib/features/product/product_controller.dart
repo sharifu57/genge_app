@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:genge_app/core/widgets/app_snackbar.dart';
 import 'package:genge_app/data/models/product_model.dart';
 import 'package:genge_app/data/repositories/product/product_repository.dart';
 import 'package:genge_app/features/cart/cart_controller.dart';

@@ -8,6 +8,8 @@ import 'package:genge_app/data/models/product_model.dart';
 import 'package:genge_app/features/product/product_controller.dart';
 import 'package:get/get.dart';
 
+import '../../wrapper/wrapper_controller.dart';
+
 class ViewOneProduct extends StatefulWidget {
   const ViewOneProduct({super.key});
 
@@ -45,7 +47,13 @@ class _ViewOneProductState extends State<ViewOneProduct> {
             () => Stack(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // final wrapperController = Get.find<WrapperController>();
+                    // wrapperController.changeTab(2);
+                    // Get.offAllNamed("/wrapper");
+                    Get.find<WrapperController>().goToCart();
+                    Get.back();
+                  },
                   icon: Icon(Icons.shopping_cart_outlined),
                 ),
 

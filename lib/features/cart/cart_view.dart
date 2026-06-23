@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genge_app/core/theme/app_colors.dart';
+import 'package:genge_app/core/theme/app_sizes.dart';
+import 'package:genge_app/core/utils/helper_function.dart';
 import 'package:genge_app/core/widgets/app_network_image.dart';
 import 'package:genge_app/features/cart/cart_controller.dart';
 import 'package:get/get.dart';
@@ -41,7 +43,7 @@ class CartView extends GetView<CartController> {
             Expanded(
               child: ListView.separated(
                 itemCount: controller.cartItems.length,
-                separatorBuilder: (_, __) => SizedBox(height: 12.h),
+                separatorBuilder: (_, _) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
                   final item = controller.cartItems[index];
 
@@ -107,11 +109,11 @@ class CartView extends GetView<CartController> {
                               SizedBox(height: 6.h),
 
                               Text(
-                                "TZS ${unitPrice.toStringAsFixed(0)}",
+                                HelperFunction.formatCurrency(unitPrice),
                                 style: TextStyle(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
 
@@ -167,10 +169,10 @@ class CartView extends GetView<CartController> {
                             SizedBox(height: 10.h),
 
                             Text(
-                              "TZS ${subtotal.toStringAsFixed(0)}",
+                              HelperFunction.formatCurrency(subtotal),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 14.sp,
+                                fontSize: 13.sp,
                               ),
                             ),
                           ],
@@ -200,7 +202,7 @@ class CartView extends GetView<CartController> {
                       Text(
                         "Jumla",
                         style: TextStyle(
-                          fontSize: 16.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -208,11 +210,11 @@ class CartView extends GetView<CartController> {
                       const Spacer(),
 
                       Text(
-                        "TZS ${controller.cartTotal.toStringAsFixed(0)}",
+                        HelperFunction.formatCurrency(controller.cartTotal),
                         style: TextStyle(
                           color: AppColors.primary,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
+                          fontSize: AppSizes.fontLG,
                         ),
                       ),
                     ],
@@ -226,7 +228,10 @@ class CartView extends GetView<CartController> {
                     child: ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.shopping_bag_outlined),
-                      label: const Text("Endelea Kulipa"),
+                      label: Text(
+                        "Endelea Kulipa",
+                        style: TextStyle(fontSize: AppSizes.fontXS),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.white,

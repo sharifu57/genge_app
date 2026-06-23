@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:genge_app/core/theme/app_colors.dart';
 import 'package:genge_app/core/theme/app_sizes.dart';
 import 'package:genge_app/core/widgets/home_app_bar.dart';
 import 'package:genge_app/features/cart/cart_view.dart';
 import 'package:genge_app/features/orders/order_view.dart';
-import 'package:genge_app/features/product/product_controller.dart';
 import 'package:genge_app/features/profile/profile_view.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +21,7 @@ class WrapperView extends GetView<WrapperController> {
       return Scaffold(
         appBar: HomeAppBar(),
         body: Container(
-          color: AppColors.surface,
+          // color: AppColors.surface,
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: AppSizes.horizontal,

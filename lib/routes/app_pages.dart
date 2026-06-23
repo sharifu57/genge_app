@@ -53,6 +53,5 @@ class AppPages {
       page: () => const ProductView(),
       binding: ProductBinding(),
     ),
-
   ];
 }
